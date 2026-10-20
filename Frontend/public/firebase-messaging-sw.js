@@ -7,12 +7,12 @@ importScripts(
 );
 
 firebase.initializeApp({
-  apiKey: 'AIzaSyDOeAVkOAK0FWoVZ011wCJbw2FZGVwXPkA',
-  authDomain: 'nestjsreactwebsite.firebaseapp.com',
-  projectId: 'nestjsreactwebsite',
-  storageBucket: 'nestjsreactwebsite.firebasestorage.app',
-  messagingSenderId: '854262395201',
-  appId: '1:854262395201:web:ee8dcafb46f36f41ce71c0',
+  apiKey: '',
+  authDomain: '',
+  projectId: '',
+  storageBucket: '',
+  messagingSenderId: '',
+  appId: '',
 });
 
 const messaging = firebase.messaging();

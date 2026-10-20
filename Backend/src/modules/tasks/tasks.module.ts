@@ -3,6 +3,7 @@ import { JwtModule } from '@nestjs/jwt';
 import { TasksController } from './tasks.controller.js';
 import { TasksService } from './tasks.service.js';
 import { AuthGuard } from '../../common/guards/auth.guard.js';
+import { NotificationsModule } from '../notifications/notifications.module.js';
 
 @Module({
     imports: [
@@ -14,6 +15,7 @@ import { AuthGuard } from '../../common/guards/auth.guard.js';
             },
         }),
         }),
+        NotificationsModule
     ],
 controllers: [TasksController],
 providers: [TasksService, AuthGuard],

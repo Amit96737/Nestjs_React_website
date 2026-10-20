@@ -218,6 +218,8 @@ export type UserWhereInput = {
   projects?: Prisma.ProjectListRelationFilter
   project_memberships?: Prisma.ProjectMemberListRelationFilter
   assigned_tasks?: Prisma.TaskListRelationFilter
+  notifications?: Prisma.NotificationListRelationFilter
+  device_tokens?: Prisma.DeviceTokenListRelationFilter
 }
 
 export type UserOrderByWithRelationInput = {
@@ -234,6 +236,8 @@ export type UserOrderByWithRelationInput = {
   projects?: Prisma.ProjectOrderByRelationAggregateInput
   project_memberships?: Prisma.ProjectMemberOrderByRelationAggregateInput
   assigned_tasks?: Prisma.TaskOrderByRelationAggregateInput
+  notifications?: Prisma.NotificationOrderByRelationAggregateInput
+  device_tokens?: Prisma.DeviceTokenOrderByRelationAggregateInput
 }
 
 export type UserWhereUniqueInput = Prisma.AtLeast<{
@@ -253,6 +257,8 @@ export type UserWhereUniqueInput = Prisma.AtLeast<{
   projects?: Prisma.ProjectListRelationFilter
   project_memberships?: Prisma.ProjectMemberListRelationFilter
   assigned_tasks?: Prisma.TaskListRelationFilter
+  notifications?: Prisma.NotificationListRelationFilter
+  device_tokens?: Prisma.DeviceTokenListRelationFilter
 }, "id" | "email">
 
 export type UserOrderByWithAggregationInput = {
@@ -299,6 +305,8 @@ export type UserCreateInput = {
   projects?: Prisma.ProjectCreateNestedManyWithoutUserInput
   project_memberships?: Prisma.ProjectMemberCreateNestedManyWithoutUserInput
   assigned_tasks?: Prisma.TaskCreateNestedManyWithoutAssigned_toInput
+  notifications?: Prisma.NotificationCreateNestedManyWithoutUserInput
+  device_tokens?: Prisma.DeviceTokenCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateInput = {
@@ -315,6 +323,8 @@ export type UserUncheckedCreateInput = {
   projects?: Prisma.ProjectUncheckedCreateNestedManyWithoutUserInput
   project_memberships?: Prisma.ProjectMemberUncheckedCreateNestedManyWithoutUserInput
   assigned_tasks?: Prisma.TaskUncheckedCreateNestedManyWithoutAssigned_toInput
+  notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutUserInput
+  device_tokens?: Prisma.DeviceTokenUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserUpdateInput = {
@@ -331,6 +341,8 @@ export type UserUpdateInput = {
   projects?: Prisma.ProjectUpdateManyWithoutUserNestedInput
   project_memberships?: Prisma.ProjectMemberUpdateManyWithoutUserNestedInput
   assigned_tasks?: Prisma.TaskUpdateManyWithoutAssigned_toNestedInput
+  notifications?: Prisma.NotificationUpdateManyWithoutUserNestedInput
+  device_tokens?: Prisma.DeviceTokenUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateInput = {
@@ -347,6 +359,8 @@ export type UserUncheckedUpdateInput = {
   projects?: Prisma.ProjectUncheckedUpdateManyWithoutUserNestedInput
   project_memberships?: Prisma.ProjectMemberUncheckedUpdateManyWithoutUserNestedInput
   assigned_tasks?: Prisma.TaskUncheckedUpdateManyWithoutAssigned_toNestedInput
+  notifications?: Prisma.NotificationUncheckedUpdateManyWithoutUserNestedInput
+  device_tokens?: Prisma.DeviceTokenUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateManyInput = {
@@ -493,6 +507,34 @@ export type UserUpdateOneRequiredWithoutProjectsNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutProjectsInput, Prisma.UserUpdateWithoutProjectsInput>, Prisma.UserUncheckedUpdateWithoutProjectsInput>
 }
 
+export type UserCreateNestedOneWithoutNotificationsInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutNotificationsInput, Prisma.UserUncheckedCreateWithoutNotificationsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutNotificationsInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserUpdateOneRequiredWithoutNotificationsNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutNotificationsInput, Prisma.UserUncheckedCreateWithoutNotificationsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutNotificationsInput
+  upsert?: Prisma.UserUpsertWithoutNotificationsInput
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutNotificationsInput, Prisma.UserUpdateWithoutNotificationsInput>, Prisma.UserUncheckedUpdateWithoutNotificationsInput>
+}
+
+export type UserCreateNestedOneWithoutDevice_tokensInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutDevice_tokensInput, Prisma.UserUncheckedCreateWithoutDevice_tokensInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutDevice_tokensInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserUpdateOneRequiredWithoutDevice_tokensNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutDevice_tokensInput, Prisma.UserUncheckedCreateWithoutDevice_tokensInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutDevice_tokensInput
+  upsert?: Prisma.UserUpsertWithoutDevice_tokensInput
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutDevice_tokensInput, Prisma.UserUpdateWithoutDevice_tokensInput>, Prisma.UserUncheckedUpdateWithoutDevice_tokensInput>
+}
+
 export type UserCreateWithoutProject_membershipsInput = {
   id?: string
   first_name: string
@@ -506,6 +548,8 @@ export type UserCreateWithoutProject_membershipsInput = {
   tasks?: Prisma.TaskCreateNestedManyWithoutUserInput
   projects?: Prisma.ProjectCreateNestedManyWithoutUserInput
   assigned_tasks?: Prisma.TaskCreateNestedManyWithoutAssigned_toInput
+  notifications?: Prisma.NotificationCreateNestedManyWithoutUserInput
+  device_tokens?: Prisma.DeviceTokenCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutProject_membershipsInput = {
@@ -521,6 +565,8 @@ export type UserUncheckedCreateWithoutProject_membershipsInput = {
   tasks?: Prisma.TaskUncheckedCreateNestedManyWithoutUserInput
   projects?: Prisma.ProjectUncheckedCreateNestedManyWithoutUserInput
   assigned_tasks?: Prisma.TaskUncheckedCreateNestedManyWithoutAssigned_toInput
+  notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutUserInput
+  device_tokens?: Prisma.DeviceTokenUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutProject_membershipsInput = {
@@ -552,6 +598,8 @@ export type UserUpdateWithoutProject_membershipsInput = {
   tasks?: Prisma.TaskUpdateManyWithoutUserNestedInput
   projects?: Prisma.ProjectUpdateManyWithoutUserNestedInput
   assigned_tasks?: Prisma.TaskUpdateManyWithoutAssigned_toNestedInput
+  notifications?: Prisma.NotificationUpdateManyWithoutUserNestedInput
+  device_tokens?: Prisma.DeviceTokenUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutProject_membershipsInput = {
@@ -567,6 +615,8 @@ export type UserUncheckedUpdateWithoutProject_membershipsInput = {
   tasks?: Prisma.TaskUncheckedUpdateManyWithoutUserNestedInput
   projects?: Prisma.ProjectUncheckedUpdateManyWithoutUserNestedInput
   assigned_tasks?: Prisma.TaskUncheckedUpdateManyWithoutAssigned_toNestedInput
+  notifications?: Prisma.NotificationUncheckedUpdateManyWithoutUserNestedInput
+  device_tokens?: Prisma.DeviceTokenUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateWithoutTasksInput = {
@@ -582,6 +632,8 @@ export type UserCreateWithoutTasksInput = {
   projects?: Prisma.ProjectCreateNestedManyWithoutUserInput
   project_memberships?: Prisma.ProjectMemberCreateNestedManyWithoutUserInput
   assigned_tasks?: Prisma.TaskCreateNestedManyWithoutAssigned_toInput
+  notifications?: Prisma.NotificationCreateNestedManyWithoutUserInput
+  device_tokens?: Prisma.DeviceTokenCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutTasksInput = {
@@ -597,6 +649,8 @@ export type UserUncheckedCreateWithoutTasksInput = {
   projects?: Prisma.ProjectUncheckedCreateNestedManyWithoutUserInput
   project_memberships?: Prisma.ProjectMemberUncheckedCreateNestedManyWithoutUserInput
   assigned_tasks?: Prisma.TaskUncheckedCreateNestedManyWithoutAssigned_toInput
+  notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutUserInput
+  device_tokens?: Prisma.DeviceTokenUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutTasksInput = {
@@ -617,6 +671,8 @@ export type UserCreateWithoutAssigned_tasksInput = {
   tasks?: Prisma.TaskCreateNestedManyWithoutUserInput
   projects?: Prisma.ProjectCreateNestedManyWithoutUserInput
   project_memberships?: Prisma.ProjectMemberCreateNestedManyWithoutUserInput
+  notifications?: Prisma.NotificationCreateNestedManyWithoutUserInput
+  device_tokens?: Prisma.DeviceTokenCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutAssigned_tasksInput = {
@@ -632,6 +688,8 @@ export type UserUncheckedCreateWithoutAssigned_tasksInput = {
   tasks?: Prisma.TaskUncheckedCreateNestedManyWithoutUserInput
   projects?: Prisma.ProjectUncheckedCreateNestedManyWithoutUserInput
   project_memberships?: Prisma.ProjectMemberUncheckedCreateNestedManyWithoutUserInput
+  notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutUserInput
+  device_tokens?: Prisma.DeviceTokenUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutAssigned_tasksInput = {
@@ -663,6 +721,8 @@ export type UserUpdateWithoutTasksInput = {
   projects?: Prisma.ProjectUpdateManyWithoutUserNestedInput
   project_memberships?: Prisma.ProjectMemberUpdateManyWithoutUserNestedInput
   assigned_tasks?: Prisma.TaskUpdateManyWithoutAssigned_toNestedInput
+  notifications?: Prisma.NotificationUpdateManyWithoutUserNestedInput
+  device_tokens?: Prisma.DeviceTokenUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutTasksInput = {
@@ -678,6 +738,8 @@ export type UserUncheckedUpdateWithoutTasksInput = {
   projects?: Prisma.ProjectUncheckedUpdateManyWithoutUserNestedInput
   project_memberships?: Prisma.ProjectMemberUncheckedUpdateManyWithoutUserNestedInput
   assigned_tasks?: Prisma.TaskUncheckedUpdateManyWithoutAssigned_toNestedInput
+  notifications?: Prisma.NotificationUncheckedUpdateManyWithoutUserNestedInput
+  device_tokens?: Prisma.DeviceTokenUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserUpsertWithoutAssigned_tasksInput = {
@@ -704,6 +766,8 @@ export type UserUpdateWithoutAssigned_tasksInput = {
   tasks?: Prisma.TaskUpdateManyWithoutUserNestedInput
   projects?: Prisma.ProjectUpdateManyWithoutUserNestedInput
   project_memberships?: Prisma.ProjectMemberUpdateManyWithoutUserNestedInput
+  notifications?: Prisma.NotificationUpdateManyWithoutUserNestedInput
+  device_tokens?: Prisma.DeviceTokenUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutAssigned_tasksInput = {
@@ -719,6 +783,8 @@ export type UserUncheckedUpdateWithoutAssigned_tasksInput = {
   tasks?: Prisma.TaskUncheckedUpdateManyWithoutUserNestedInput
   projects?: Prisma.ProjectUncheckedUpdateManyWithoutUserNestedInput
   project_memberships?: Prisma.ProjectMemberUncheckedUpdateManyWithoutUserNestedInput
+  notifications?: Prisma.NotificationUncheckedUpdateManyWithoutUserNestedInput
+  device_tokens?: Prisma.DeviceTokenUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateWithoutProjectsInput = {
@@ -734,6 +800,8 @@ export type UserCreateWithoutProjectsInput = {
   tasks?: Prisma.TaskCreateNestedManyWithoutUserInput
   project_memberships?: Prisma.ProjectMemberCreateNestedManyWithoutUserInput
   assigned_tasks?: Prisma.TaskCreateNestedManyWithoutAssigned_toInput
+  notifications?: Prisma.NotificationCreateNestedManyWithoutUserInput
+  device_tokens?: Prisma.DeviceTokenCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutProjectsInput = {
@@ -749,6 +817,8 @@ export type UserUncheckedCreateWithoutProjectsInput = {
   tasks?: Prisma.TaskUncheckedCreateNestedManyWithoutUserInput
   project_memberships?: Prisma.ProjectMemberUncheckedCreateNestedManyWithoutUserInput
   assigned_tasks?: Prisma.TaskUncheckedCreateNestedManyWithoutAssigned_toInput
+  notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutUserInput
+  device_tokens?: Prisma.DeviceTokenUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutProjectsInput = {
@@ -780,6 +850,8 @@ export type UserUpdateWithoutProjectsInput = {
   tasks?: Prisma.TaskUpdateManyWithoutUserNestedInput
   project_memberships?: Prisma.ProjectMemberUpdateManyWithoutUserNestedInput
   assigned_tasks?: Prisma.TaskUpdateManyWithoutAssigned_toNestedInput
+  notifications?: Prisma.NotificationUpdateManyWithoutUserNestedInput
+  device_tokens?: Prisma.DeviceTokenUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutProjectsInput = {
@@ -795,6 +867,176 @@ export type UserUncheckedUpdateWithoutProjectsInput = {
   tasks?: Prisma.TaskUncheckedUpdateManyWithoutUserNestedInput
   project_memberships?: Prisma.ProjectMemberUncheckedUpdateManyWithoutUserNestedInput
   assigned_tasks?: Prisma.TaskUncheckedUpdateManyWithoutAssigned_toNestedInput
+  notifications?: Prisma.NotificationUncheckedUpdateManyWithoutUserNestedInput
+  device_tokens?: Prisma.DeviceTokenUncheckedUpdateManyWithoutUserNestedInput
+}
+
+export type UserCreateWithoutNotificationsInput = {
+  id?: string
+  first_name: string
+  last_name: string
+  email: string
+  password: string
+  is_active?: boolean
+  email_verified?: boolean
+  created_at?: Date | string
+  updated_at?: Date | string
+  tasks?: Prisma.TaskCreateNestedManyWithoutUserInput
+  projects?: Prisma.ProjectCreateNestedManyWithoutUserInput
+  project_memberships?: Prisma.ProjectMemberCreateNestedManyWithoutUserInput
+  assigned_tasks?: Prisma.TaskCreateNestedManyWithoutAssigned_toInput
+  device_tokens?: Prisma.DeviceTokenCreateNestedManyWithoutUserInput
+}
+
+export type UserUncheckedCreateWithoutNotificationsInput = {
+  id?: string
+  first_name: string
+  last_name: string
+  email: string
+  password: string
+  is_active?: boolean
+  email_verified?: boolean
+  created_at?: Date | string
+  updated_at?: Date | string
+  tasks?: Prisma.TaskUncheckedCreateNestedManyWithoutUserInput
+  projects?: Prisma.ProjectUncheckedCreateNestedManyWithoutUserInput
+  project_memberships?: Prisma.ProjectMemberUncheckedCreateNestedManyWithoutUserInput
+  assigned_tasks?: Prisma.TaskUncheckedCreateNestedManyWithoutAssigned_toInput
+  device_tokens?: Prisma.DeviceTokenUncheckedCreateNestedManyWithoutUserInput
+}
+
+export type UserCreateOrConnectWithoutNotificationsInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutNotificationsInput, Prisma.UserUncheckedCreateWithoutNotificationsInput>
+}
+
+export type UserUpsertWithoutNotificationsInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutNotificationsInput, Prisma.UserUncheckedUpdateWithoutNotificationsInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutNotificationsInput, Prisma.UserUncheckedCreateWithoutNotificationsInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutNotificationsInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutNotificationsInput, Prisma.UserUncheckedUpdateWithoutNotificationsInput>
+}
+
+export type UserUpdateWithoutNotificationsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  first_name?: Prisma.StringFieldUpdateOperationsInput | string
+  last_name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  password?: Prisma.StringFieldUpdateOperationsInput | string
+  is_active?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  email_verified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  tasks?: Prisma.TaskUpdateManyWithoutUserNestedInput
+  projects?: Prisma.ProjectUpdateManyWithoutUserNestedInput
+  project_memberships?: Prisma.ProjectMemberUpdateManyWithoutUserNestedInput
+  assigned_tasks?: Prisma.TaskUpdateManyWithoutAssigned_toNestedInput
+  device_tokens?: Prisma.DeviceTokenUpdateManyWithoutUserNestedInput
+}
+
+export type UserUncheckedUpdateWithoutNotificationsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  first_name?: Prisma.StringFieldUpdateOperationsInput | string
+  last_name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  password?: Prisma.StringFieldUpdateOperationsInput | string
+  is_active?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  email_verified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  tasks?: Prisma.TaskUncheckedUpdateManyWithoutUserNestedInput
+  projects?: Prisma.ProjectUncheckedUpdateManyWithoutUserNestedInput
+  project_memberships?: Prisma.ProjectMemberUncheckedUpdateManyWithoutUserNestedInput
+  assigned_tasks?: Prisma.TaskUncheckedUpdateManyWithoutAssigned_toNestedInput
+  device_tokens?: Prisma.DeviceTokenUncheckedUpdateManyWithoutUserNestedInput
+}
+
+export type UserCreateWithoutDevice_tokensInput = {
+  id?: string
+  first_name: string
+  last_name: string
+  email: string
+  password: string
+  is_active?: boolean
+  email_verified?: boolean
+  created_at?: Date | string
+  updated_at?: Date | string
+  tasks?: Prisma.TaskCreateNestedManyWithoutUserInput
+  projects?: Prisma.ProjectCreateNestedManyWithoutUserInput
+  project_memberships?: Prisma.ProjectMemberCreateNestedManyWithoutUserInput
+  assigned_tasks?: Prisma.TaskCreateNestedManyWithoutAssigned_toInput
+  notifications?: Prisma.NotificationCreateNestedManyWithoutUserInput
+}
+
+export type UserUncheckedCreateWithoutDevice_tokensInput = {
+  id?: string
+  first_name: string
+  last_name: string
+  email: string
+  password: string
+  is_active?: boolean
+  email_verified?: boolean
+  created_at?: Date | string
+  updated_at?: Date | string
+  tasks?: Prisma.TaskUncheckedCreateNestedManyWithoutUserInput
+  projects?: Prisma.ProjectUncheckedCreateNestedManyWithoutUserInput
+  project_memberships?: Prisma.ProjectMemberUncheckedCreateNestedManyWithoutUserInput
+  assigned_tasks?: Prisma.TaskUncheckedCreateNestedManyWithoutAssigned_toInput
+  notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutUserInput
+}
+
+export type UserCreateOrConnectWithoutDevice_tokensInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutDevice_tokensInput, Prisma.UserUncheckedCreateWithoutDevice_tokensInput>
+}
+
+export type UserUpsertWithoutDevice_tokensInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutDevice_tokensInput, Prisma.UserUncheckedUpdateWithoutDevice_tokensInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutDevice_tokensInput, Prisma.UserUncheckedCreateWithoutDevice_tokensInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutDevice_tokensInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutDevice_tokensInput, Prisma.UserUncheckedUpdateWithoutDevice_tokensInput>
+}
+
+export type UserUpdateWithoutDevice_tokensInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  first_name?: Prisma.StringFieldUpdateOperationsInput | string
+  last_name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  password?: Prisma.StringFieldUpdateOperationsInput | string
+  is_active?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  email_verified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  tasks?: Prisma.TaskUpdateManyWithoutUserNestedInput
+  projects?: Prisma.ProjectUpdateManyWithoutUserNestedInput
+  project_memberships?: Prisma.ProjectMemberUpdateManyWithoutUserNestedInput
+  assigned_tasks?: Prisma.TaskUpdateManyWithoutAssigned_toNestedInput
+  notifications?: Prisma.NotificationUpdateManyWithoutUserNestedInput
+}
+
+export type UserUncheckedUpdateWithoutDevice_tokensInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  first_name?: Prisma.StringFieldUpdateOperationsInput | string
+  last_name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  password?: Prisma.StringFieldUpdateOperationsInput | string
+  is_active?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  email_verified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  tasks?: Prisma.TaskUncheckedUpdateManyWithoutUserNestedInput
+  projects?: Prisma.ProjectUncheckedUpdateManyWithoutUserNestedInput
+  project_memberships?: Prisma.ProjectMemberUncheckedUpdateManyWithoutUserNestedInput
+  assigned_tasks?: Prisma.TaskUncheckedUpdateManyWithoutAssigned_toNestedInput
+  notifications?: Prisma.NotificationUncheckedUpdateManyWithoutUserNestedInput
 }
 
 
@@ -807,6 +1049,8 @@ export type UserCountOutputType = {
   projects: number
   project_memberships: number
   assigned_tasks: number
+  notifications: number
+  device_tokens: number
 }
 
 export type UserCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -814,6 +1058,8 @@ export type UserCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.I
   projects?: boolean | UserCountOutputTypeCountProjectsArgs
   project_memberships?: boolean | UserCountOutputTypeCountProject_membershipsArgs
   assigned_tasks?: boolean | UserCountOutputTypeCountAssigned_tasksArgs
+  notifications?: boolean | UserCountOutputTypeCountNotificationsArgs
+  device_tokens?: boolean | UserCountOutputTypeCountDevice_tokensArgs
 }
 
 /**
@@ -854,6 +1100,20 @@ export type UserCountOutputTypeCountAssigned_tasksArgs<ExtArgs extends runtime.T
   where?: Prisma.TaskWhereInput
 }
 
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountNotificationsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.NotificationWhereInput
+}
+
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountDevice_tokensArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.DeviceTokenWhereInput
+}
+
 
 export type UserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -869,6 +1129,8 @@ export type UserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = r
   projects?: boolean | Prisma.User$projectsArgs<ExtArgs>
   project_memberships?: boolean | Prisma.User$project_membershipsArgs<ExtArgs>
   assigned_tasks?: boolean | Prisma.User$assigned_tasksArgs<ExtArgs>
+  notifications?: boolean | Prisma.User$notificationsArgs<ExtArgs>
+  device_tokens?: boolean | Prisma.User$device_tokensArgs<ExtArgs>
   _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["user"]>
 
@@ -914,6 +1176,8 @@ export type UserInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = 
   projects?: boolean | Prisma.User$projectsArgs<ExtArgs>
   project_memberships?: boolean | Prisma.User$project_membershipsArgs<ExtArgs>
   assigned_tasks?: boolean | Prisma.User$assigned_tasksArgs<ExtArgs>
+  notifications?: boolean | Prisma.User$notificationsArgs<ExtArgs>
+  device_tokens?: boolean | Prisma.User$device_tokensArgs<ExtArgs>
   _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type UserIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
@@ -926,6 +1190,8 @@ export type $UserPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs =
     projects: Prisma.$ProjectPayload<ExtArgs>[]
     project_memberships: Prisma.$ProjectMemberPayload<ExtArgs>[]
     assigned_tasks: Prisma.$TaskPayload<ExtArgs>[]
+    notifications: Prisma.$NotificationPayload<ExtArgs>[]
+    device_tokens: Prisma.$DeviceTokenPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -1335,6 +1601,8 @@ export interface Prisma__UserClient<T, Null = never, ExtArgs extends runtime.Typ
   projects<T extends Prisma.User$projectsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$projectsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ProjectPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   project_memberships<T extends Prisma.User$project_membershipsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$project_membershipsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ProjectMemberPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   assigned_tasks<T extends Prisma.User$assigned_tasksArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$assigned_tasksArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$TaskPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  notifications<T extends Prisma.User$notificationsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$notificationsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$NotificationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  device_tokens<T extends Prisma.User$device_tokensArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$device_tokensArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$DeviceTokenPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1859,6 +2127,54 @@ export type User$assigned_tasksArgs<ExtArgs extends runtime.Types.Extensions.Int
   take?: number
   skip?: number
   distinct?: Prisma.TaskScalarFieldEnum | Prisma.TaskScalarFieldEnum[]
+}
+
+/**
+ * User.notifications
+ */
+export type User$notificationsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Notification
+   */
+  select?: Prisma.NotificationSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Notification
+   */
+  omit?: Prisma.NotificationOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.NotificationInclude<ExtArgs> | null
+  where?: Prisma.NotificationWhereInput
+  orderBy?: Prisma.NotificationOrderByWithRelationInput | Prisma.NotificationOrderByWithRelationInput[]
+  cursor?: Prisma.NotificationWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.NotificationScalarFieldEnum | Prisma.NotificationScalarFieldEnum[]
+}
+
+/**
+ * User.device_tokens
+ */
+export type User$device_tokensArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the DeviceToken
+   */
+  select?: Prisma.DeviceTokenSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the DeviceToken
+   */
+  omit?: Prisma.DeviceTokenOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.DeviceTokenInclude<ExtArgs> | null
+  where?: Prisma.DeviceTokenWhereInput
+  orderBy?: Prisma.DeviceTokenOrderByWithRelationInput | Prisma.DeviceTokenOrderByWithRelationInput[]
+  cursor?: Prisma.DeviceTokenWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.DeviceTokenScalarFieldEnum | Prisma.DeviceTokenScalarFieldEnum[]
 }
 
 /**

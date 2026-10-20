@@ -326,6 +326,21 @@ export default function Projects() {
             Task Management
           </NavLink>
 
+          <NavLink
+            to="/notification"
+            style={{ textDecoration: 'none' }}
+            className={({ isActive }) =>
+              isActive ? 'sidebar-link sidebar-link-active' : 'sidebar-link'
+            }
+          >
+            <span className="sidebar-icon">▦</span>
+            Notification Management
+          </NavLink>
+
+          <NavLink to="/profile" style={{ textDecoration: 'none' }} className={({ isActive }) => `sidebar-link ${isActive ? 'sidebar-link-active' : ''}`}>
+            <span className="sidebar-icon">♙</span>Profile Management
+          </NavLink>
+
         </nav>
         <div className="sidebar-logout" style={{ marginTop: 'auto' }}>
           <button

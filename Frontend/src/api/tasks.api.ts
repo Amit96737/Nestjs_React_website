@@ -23,6 +23,7 @@ export interface TaskPayload {
   priority?: TaskPriority;
   due_date?: string | null;
   project_id?: string;
+  assigned_to_id?: string | null;
 }
 
 export interface TaskListResponse {

@@ -5,6 +5,7 @@ import {
   IsString,
   MaxLength,
   MinLength,
+  IsUUID
 } from 'class-validator';
 
 import { TaskStatus } from '../../../generated/prisma/client.js';
@@ -33,4 +34,8 @@ export class UpdateTaskDto {
   @IsOptional()
   @IsDateString()
   due_date?: string | null;
+
+  @IsOptional()
+  @IsUUID()
+  assigned_to_id?: string | null;
 }

@@ -5,6 +5,9 @@ import Login from './pages/Login';
 import Dashboard from './pages/Dashboard';
 import Projects from './pages/Projects';
 import ProtectedRoute from './routes/ProtectedRoute';
+import FcmTest from './components/FcmTest';
+import Notifications from './pages/Notifications';
+import Profile from './pages/Profile';
 
 function App() {
   return (
@@ -24,6 +27,10 @@ function App() {
         <Route element={<ProtectedRoute />}>
           <Route path="/projects" element={<Projects />} />
         </Route>
+
+        <Route path="/fcm-test" element={<FcmTest />} />
+        <Route path="/notification" element={<Notifications />} />
+        <Route path="/profile" element={<Profile />} />
 
         
       </Routes>

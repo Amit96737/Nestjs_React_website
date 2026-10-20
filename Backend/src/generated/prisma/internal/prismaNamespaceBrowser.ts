@@ -55,7 +55,9 @@ export const ModelName = {
   User: 'User',
   Admin: 'Admin',
   Task: 'Task',
-  Project: 'Project'
+  Project: 'Project',
+  Notification: 'Notification',
+  DeviceToken: 'DeviceToken'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -143,6 +145,32 @@ export const ProjectScalarFieldEnum = {
 } as const
 
 export type ProjectScalarFieldEnum = (typeof ProjectScalarFieldEnum)[keyof typeof ProjectScalarFieldEnum]
+
+
+export const NotificationScalarFieldEnum = {
+  id: 'id',
+  user_id: 'user_id',
+  task_id: 'task_id',
+  type: 'type',
+  title: 'title',
+  message: 'message',
+  is_read: 'is_read',
+  created_at: 'created_at',
+  read_at: 'read_at'
+} as const
+
+export type NotificationScalarFieldEnum = (typeof NotificationScalarFieldEnum)[keyof typeof NotificationScalarFieldEnum]
+
+
+export const DeviceTokenScalarFieldEnum = {
+  id: 'id',
+  user_id: 'user_id',
+  token: 'token',
+  created_at: 'created_at',
+  updated_at: 'updated_at'
+} as const
+
+export type DeviceTokenScalarFieldEnum = (typeof DeviceTokenScalarFieldEnum)[keyof typeof DeviceTokenScalarFieldEnum]
 
 
 export const SortOrder = {

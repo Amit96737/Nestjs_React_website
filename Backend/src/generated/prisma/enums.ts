@@ -44,3 +44,12 @@ export const ProjectMemberRole = {
 } as const
 
 export type ProjectMemberRole = (typeof ProjectMemberRole)[keyof typeof ProjectMemberRole]
+
+
+export const NotificationType = {
+  TASK_ASSIGNED: 'TASK_ASSIGNED',
+  TASK_DEADLINE: 'TASK_DEADLINE',
+  TASK_STATUS_UPDATED: 'TASK_STATUS_UPDATED'
+} as const
+
+export type NotificationType = (typeof NotificationType)[keyof typeof NotificationType]

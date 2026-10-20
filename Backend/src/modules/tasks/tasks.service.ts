@@ -4,63 +4,122 @@ import { CreateTaskDto } from './dto/create-task.dto.js';
 import { QueryTaskDto } from '../../modules/tasks/dto/query-task.dto.js';
 import { UpdateTaskDto } from '../../modules/tasks/dto/update-task.dto.js';
 import { AssignTaskDto } from '../../modules/tasks/dto/assign-task.dto.js';
+import { NotificationsService } from '../notifications/notifications.service.js';
 
 
 @Injectable()
 export class TasksService {
-  constructor(private readonly prisma: PrismaService) {}
+  constructor(private readonly prisma: PrismaService,
+    private readonly notificationsService: NotificationsService,
+  ) {}
 
   
   async create(userId: string, dto: CreateTaskDto) {
-    if (dto.project_id) {
-      const project = await this.prisma.project.findUnique({
-        where: { id: dto.project_id },
-        select: { id: true, user_id: true },
-      });
+  if (dto.project_id) {
+    const project = await this.prisma.project.findUnique({
+      where: { id: dto.project_id },
+      select: { id: true, user_id: true },
+    });
 
-      if (!project) {
-        throw new NotFoundException('Project not found');
-      }
-
-      const isOwner = project.user_id === userId;
-
-      const membership = await this.prisma.projectMember.findUnique({
-        where: {
-          project_id_user_id: {
-            project_id: dto.project_id,
-            user_id: userId,
-          },
-        },
-      });
-
-      if (!isOwner && !membership) {
-        throw new ForbiddenException(
-          'You do not have access to this project',
-        );
-      }
+    if (!project) {
+      throw new NotFoundException('Project not found');
     }
 
-    return this.prisma.task.create({
-      data: {
-        title: dto.title,
-        description: dto.description,
-        priority: dto.priority ?? 'MEDIUM',
-        due_date: dto.due_date
-          ? new Date(dto.due_date)
-          : undefined,
-        user_id: userId,
-        project_id: dto.project_id ?? null,
-      },
-      include: {
-        project: {
-          select: {
-            id: true,
-            name: true,
-          },
+    const isOwner = project.user_id === userId;
+
+    const membership = await this.prisma.projectMember.findUnique({
+      where: {
+        project_id_user_id: {
+          project_id: dto.project_id,
+          user_id: userId,
         },
       },
     });
+
+    if (!isOwner && !membership) {
+      throw new ForbiddenException(
+        'You do not have access to this project',
+      );
+    }
   }
+
+  if (dto.assigned_to_id) {
+    const assignee = await this.prisma.user.findUnique({
+      where: { id: dto.assigned_to_id },
+      select: { id: true },
+    });
+
+    if (!assignee) {
+      throw new NotFoundException('Assigned user not found');
+    }
+
+    if (dto.project_id) {
+      const project = await this.prisma.project.findUnique({
+        where: { id: dto.project_id },
+        select: { user_id: true },
+      });
+
+      const isProjectOwner = project?.user_id === dto.assigned_to_id;
+
+      const assigneeMembership =
+        await this.prisma.projectMember.findUnique({
+          where: {
+            project_id_user_id: {
+              project_id: dto.project_id,
+              user_id: dto.assigned_to_id,
+            },
+          },
+        });
+
+      if (!isProjectOwner && !assigneeMembership) {
+        throw new ForbiddenException(
+          'Assigned user must belong to the project',
+        );
+      }
+    }
+  }
+
+  const task = await this.prisma.task.create({
+    data: {
+      title: dto.title,
+      description: dto.description,
+      priority: dto.priority ?? 'MEDIUM',
+      due_date: dto.due_date
+        ? new Date(dto.due_date)
+        : undefined,
+      user_id: userId,
+      project_id: dto.project_id ?? null,
+      assigned_to_id: dto.assigned_to_id ?? null,
+    },
+    include: {
+      project: {
+        select: {
+          id: true,
+          name: true,
+        },
+      },
+    },
+  });
+
+  if (
+    task.assigned_to_id &&
+    task.assigned_to_id !== userId
+  ) {
+    try {
+      await this.notificationsService.createAndSendNotification(
+        task.assigned_to_id,
+        task.id,
+        'New Task Assigned',
+        `You have been assigned task: ${task.title}`,
+        'TASK_ASSIGNED',
+      );
+    } catch (error) {
+      console.error('Failed to send task assignment notification:', error);
+    }
+  }
+
+  return task;
+}
 
 
 
@@ -125,39 +184,79 @@ export class TasksService {
 
 
   async update(
-  userId: string,
-  taskId: string,
-  dto: UpdateTaskDto,
-) {
-  const result = await this.prisma.task.updateMany({
-    where: {
-      id: taskId,
-      user_id: userId,
-    },
-    data: {
-      title: dto.title,
-      description: dto.description,
-      status: dto.status,
-      priority: dto.priority,
-      due_date:
-        dto.due_date === undefined
-          ? undefined
-          : dto.due_date === null
-            ? null
-            : new Date(dto.due_date),
-    },
-  });
+    userId: string,
+    taskId: string,
+    dto: UpdateTaskDto,
+  ) {
+    const existingTask = await this.prisma.task.findFirst({
+      where: {
+        id: taskId,
+        user_id: userId,
+      },
+    });
 
-  if (result.count === 0) {
-    throw new NotFoundException('Task not found');
-  }
+    if (!existingTask) {
+      throw new NotFoundException('Task not found');
+    }
 
-  return this.prisma.task.findFirst({
-    where: {
-      id: taskId,
-      user_id: userId,
-    },
-  });
+    const result = await this.prisma.task.updateMany({
+      where: {
+        id: taskId,
+        user_id: userId,
+      },
+      data: {
+        title: dto.title,
+        description: dto.description,
+        status: dto.status,
+        priority: dto.priority,
+        due_date:
+          dto.due_date === undefined
+            ? undefined
+            : dto.due_date === null
+              ? null
+              : new Date(dto.due_date),
+      },
+    });
+
+    if (result.count === 0) {
+      throw new NotFoundException('Task not found');
+    }
+
+    const updatedTask = await this.prisma.task.findFirst({
+      where: {
+        id: taskId,
+        user_id: userId,
+      },
+    });
+
+    if (!updatedTask) {
+      throw new NotFoundException('Task not found');
+    }
+
+    if (
+      dto.status !== undefined &&
+      existingTask.status !== updatedTask.status
+    ) {
+      const recipientId =
+        updatedTask.assigned_to_id ?? updatedTask.user_id;
+
+      try {
+        await this.notificationsService.createAndSendNotification(
+          recipientId,
+          updatedTask.id,
+          'Task Status Updated',
+          `Task "${updatedTask.title}" status changed from ${existingTask.status} to ${updatedTask.status}.`,
+          'TASK_STATUS_UPDATED',
+        );
+      } catch (error) {
+        console.error(
+          'Failed to send task status notification:',
+          error,
+        );
+      }
+    }
+
+    return updatedTask;
   }
 
 

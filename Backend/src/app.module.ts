@@ -7,6 +7,7 @@ import { MailModule } from './integrations/mail/mail.module.js';
 import { TasksModule } from './modules/tasks/tasks.module.js';
 import { TeamModule } from './modules/team/team.module.js';
 import { ProjectsModule } from './modules/projects/projects.module.js';
+import { NotificationsModule } from './modules//notifications/notifications.module.js';
 
 import { MiddlewareConsumer } from '@nestjs/common';
 import { RequestLoggerMiddleware } from './common/middleware/request-logger.middleware.js';
@@ -22,7 +23,8 @@ import { RequestLoggerMiddleware } from './common/middleware/request-logger.midd
     UsersModule,
     TasksModule,
     ProjectsModule,
-    TeamModule
+    TeamModule,
+    NotificationsModule
   ],
 })
 export class AppModule {

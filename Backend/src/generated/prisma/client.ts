@@ -66,3 +66,13 @@ export type Task = Prisma.TaskModel
  * 
  */
 export type Project = Prisma.ProjectModel
+/**
+ * Model Notification
+ * 
+ */
+export type Notification = Prisma.NotificationModel
+/**
+ * Model DeviceToken
+ * 
+ */
+export type DeviceToken = Prisma.DeviceTokenModel

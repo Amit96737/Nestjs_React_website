@@ -1,0 +1,144 @@
+generator client {
+  provider = "prisma-client"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+
+enum TaskStatus {
+  TODO
+  IN_PROGRESS
+  DONE
+}
+
+enum TaskPriority {
+  LOW
+  MEDIUM
+  HIGH
+}
+
+enum ProjectStatus {
+  PLANNING
+  ACTIVE
+  COMPLETED
+  ON_HOLD
+}
+
+
+enum ProjectMemberRole {
+  OWNER
+  ADMIN
+  MEMBER
+}
+
+
+model ProjectMember {
+  project_id String @db.Uuid
+  user_id    String @db.Uuid
+
+  role       ProjectMemberRole @default(MEMBER)
+  joined_at  DateTime @default(now())
+
+  project Project @relation(fields: [project_id], references: [id], onDelete: Cascade)
+
+  user User @relation(fields: [user_id], references: [id], onDelete: Cascade)
+
+  @@id([project_id, user_id])
+  @@index([user_id])
+  @@index([project_id, role])
+}
+
+
+
+model User {
+  id             String   @id @default(uuid()) @db.Uuid
+  first_name     String
+  last_name      String
+  email          String   @unique
+  password       String
+  is_active      Boolean  @default(true)
+  email_verified Boolean  @default(false)
+  created_at     DateTime @default(now())
+  updated_at     DateTime @updatedAt
+
+  tasks           Task[]
+  projects        Project[]
+
+  
+project_memberships ProjectMember[]
+assigned_tasks      Task[] @relation("TaskAssignee")
+
+}
+
+
+
+model Admin {
+  id             String   @id @default(uuid())  @db.Uuid
+  user_name      String   @unique
+  email          String   @unique
+  status         Boolean  @default(true)
+  is_superuser   Boolean  @default(true)
+  password       String
+  created_at     DateTime @default(now())
+  updated_at     DateTime @updatedAt
+}
+
+
+
+model Task {
+  id          String       @id @default(uuid()) @db.Uuid
+  title       String       @db.VarChar(150)
+  description String?
+  status      TaskStatus   @default(TODO)
+  priority    TaskPriority @default(MEDIUM)
+  due_date    DateTime?
+
+  user_id     String       @db.Uuid
+  user        User         @relation(fields: [user_id], references: [id], onDelete: Cascade)
+
+  project_id String?  @db.Uuid
+  project    Project? @relation(fields: [project_id], references: [id], onDelete: SetNull)
+
+  created_at  DateTime     @default(now())
+  updated_at  DateTime     @updatedAt
+
+  
+  assigned_to_id String? @db.Uuid
+
+  assigned_to User? @relation("TaskAssignee", fields: [assigned_to_id], references: [id], onDelete: SetNull)
+
+  @@index([assigned_to_id])
+  @@index([user_id])
+  @@index([user_id, status])
+  @@index([project_id])
+
+}
+
+
+
+model Project {
+  id          String        @id @default(uuid()) @db.Uuid
+  name        String        @db.VarChar(150)
+  description String?
+  status      ProjectStatus @default(PLANNING)
+  start_date  DateTime?
+  due_date    DateTime?
+
+  user_id     String        @db.Uuid
+  user        User          @relation(fields: [user_id], references: [id], onDelete: Cascade)
+
+  tasks       Task[]
+
+  created_at  DateTime      @default(now())
+  updated_at  DateTime      @updatedAt
+
+  
+  members ProjectMember[]
+
+
+  @@index([user_id])
+  @@index([user_id, status])
+}

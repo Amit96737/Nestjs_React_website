@@ -1,0 +1,258 @@
+/* =========================================================
+   Projects page
+   Layout, cards, table, buttons aur form fields Dashboard.css
+   ki classes se aate hain. Yahan sirf project-specific styles hain.
+   ========================================================= */
+
+/* "New Project" button (gradient banner ke upar) */
+.projects-banner-btn {
+  position: relative;
+  z-index: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 42px;
+  padding: 0 18px;
+  border: 0;
+  border-radius: 10px;
+  background: #fff;
+  box-shadow: 0 8px 20px rgba(16, 24, 40, 0.2);
+  color: #4338ca;
+  font: inherit;
+  font-size: 13px;
+  font-weight: 750;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.projects-banner-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 26px rgba(16, 24, 40, 0.26);
+}
+
+/* Summary cards: 3 cards, isliye 3 columns */
+.stats-grid.projects-stats {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.stats-grid.projects-stats .stat-card:nth-child(1)::before { background: #1570ef; }
+.stats-grid.projects-stats .stat-card:nth-child(2)::before { background: #f79009; }
+.stats-grid.projects-stats .stat-card:nth-child(3)::before { background: #7a5af8; }
+
+/* Project status badges (dot .task-badge se aata hai) */
+.project-status-planning {
+  border-color: #c7d2fe;
+  background: #eef2ff;
+  color: #4338ca;
+}
+
+.project-status-active {
+  border-color: #abefc6;
+  background: #ecfdf3;
+  color: #067647;
+}
+
+.project-status-completed {
+  border-color: #b2ddff;
+  background: #eff8ff;
+  color: #175cd3;
+}
+
+.project-status-on_hold {
+  border-color: #fedf89;
+  background: #fffaeb;
+  color: #b54708;
+}
+
+/* Tasks count pill */
+.project-count {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 30px;
+  height: 26px;
+  padding: 0 9px;
+  border-radius: 20px;
+  background: #f2f4f7;
+  color: #344054;
+  font-size: 12px;
+  font-weight: 750;
+  box-sizing: border-box;
+}
+
+.projects-empty-btn {
+  margin-top: 18px;
+}
+
+/* ---------------- Modal ---------------- */
+.projects-modal-backdrop {
+  position: fixed;
+  z-index: 1000;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  overflow-y: auto;
+  padding: 20px;
+  background: rgba(16, 24, 40, 0.55);
+  backdrop-filter: blur(4px);
+}
+
+.projects-modal {
+  width: min(90%, 600px);
+  box-sizing: border-box;
+  padding: 26px;
+  border: 1px solid #e8ebf2;
+  border-radius: 18px;
+  background: #fff;
+  box-shadow: 0 28px 80px rgba(16, 24, 40, 0.28);
+  animation: projects-pop 0.2s ease;
+}
+
+.projects-modal-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 22px;
+  padding-bottom: 18px;
+  border-bottom: 1px solid #f0f1f4;
+}
+
+.projects-eyebrow {
+  display: inline-block;
+  margin: 0 0 9px;
+  padding: 5px 10px;
+  border-radius: 20px;
+  background: #eef2ff;
+  color: #4f46e5;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 1.5px;
+}
+
+.projects-modal h2 {
+  margin: 0;
+  color: #101828;
+  font-size: 21px;
+  font-weight: 760;
+  letter-spacing: -0.5px;
+}
+
+.projects-close-btn {
+  display: grid;
+  width: 34px;
+  height: 34px;
+  flex: 0 0 34px;
+  place-items: center;
+  padding: 0;
+  border: 1px solid #e8ebf2;
+  border-radius: 50%;
+  background: #fff;
+  color: #475467;
+  font-size: 22px;
+  line-height: 1;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.projects-close-btn:hover {
+  border-color: #fda29b;
+  background: #fff5f4;
+  color: #b42318;
+}
+
+.projects-modal form {
+  display: grid;
+  gap: 17px;
+}
+
+.projects-date-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+
+.projects-form-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  padding-top: 10px;
+  border-top: 1px solid #f0f1f4;
+}
+
+.projects-modal .task-form-error {
+  margin-bottom: 0;
+}
+
+@keyframes projects-pop {
+  from {
+    opacity: 0;
+    transform: translateY(10px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* ---------------- Responsive ---------------- */
+@media (max-width: 760px) {
+  .stats-grid.projects-stats {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 8px;
+  }
+
+  .stats-grid.projects-stats .stat-card {
+    padding: 13px 10px 11px;
+  }
+
+  .stats-grid.projects-stats .stat-icon {
+    display: none;
+  }
+
+  .stats-grid.projects-stats .stat-label {
+    font-size: 10.5px;
+  }
+
+  .stats-grid.projects-stats .stat-number {
+    margin-top: 8px;
+    font-size: 22px;
+  }
+
+  .stats-grid.projects-stats .stat-caption {
+    display: none;
+  }
+
+  .projects-banner-btn {
+    min-height: 40px;
+  }
+}
+
+@media (max-width: 480px) {
+  .projects-modal {
+    padding: 20px 16px;
+  }
+
+  .projects-date-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .projects-form-actions {
+    flex-direction: column-reverse;
+  }
+
+  .projects-form-actions button {
+    width: 100%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .projects-modal,
+  .projects-banner-btn,
+  .projects-close-btn {
+    animation: none;
+    transition: none;
+  }
+}
